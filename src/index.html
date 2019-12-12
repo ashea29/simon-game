@@ -5,8 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Simon Game</title>
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,500,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
+
+
 <body>
-  
+  <header>
+      <h1>SIMON</h1>
+  </header>
+  <div class="game-control">
+      <button id="instructions">INSTRUCTIONS</button>
+      <button onClick="window.location.reload()" id="reset">RESET</button>
+  </div>
+
+  <main>
+    <div id="game-board" class="grid-container">
+          <button id="square-one" class="grid-item1"></button>
+          <button id="square-two" class="grid-item2"></button>
+          <button id="square-three" class="grid-item3"></button>
+          <button id="square-four" class="grid-item4"></button>
+          <div id="game-board-center">
+            <div id="start-game">
+              <button id="start">START</button>
+            </div>
+          </div>
+    </div>
+    <div class="game-counter">
+        COUNTER
+      </div>
+</main>
+
+
+
+
+<script src="js/materialize.min.js"></script>
+<script src="js/scripts.js"></script>
 </body>
 </html>

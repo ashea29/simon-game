@@ -1,1 +1,147 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+
+header{
+  height: 200px;
+  padding: 10px 0;
+  margin-bottom: 100px;
+  text-align: center;
+  background-color: rgb(63, 71, 71);
+  /* rgb(59, 135, 182) */
+}
+
+h1{
+  text-align: center;
+  padding-left: 28px;
+  font-family: 'Lora', serif;
+  font-weight: 400;
+  letter-spacing: 25px;
+  font-size: 85px;
+  color: white
+}
+
+.game-control{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 100px;
+  height: 50px;
+}
+
+#game-board{
+  display: grid;
+  position: absolute;
+  text-align: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 70px;
+  height: 700px;
+  width: 700px;
+  top: 40%;
+  left: 31%;
+  margin: 50px auto;
+  
+}
+
+#game-board-center{
+  background-color: white;
+  position: absolute;
+  border-radius: 50%;
+  height: 300px;
+  width: 300px;
+  top: 29%;
+  left: 28.7%;
+}
+
+#start{
+  position: absolute;
+  outline: none;
+  background-color: rgb(63, 71, 71);
+  border: 5px solid rgb(85, 109, 109);
+  border-radius: 10%;
+  font-size: 50px;
+  font-family: 'Lora', serif;
+  color: white;
+  height: 100px;
+  width: 175px;
+  top: 35%;
+  left: 21%;
+}
+
+
+#instructions{
+  outline: none;
+  height: 100px;
+  width: 275px;
+  font-size: 35px;
+  border-radius: 10px;
+  border: 5px solid rgb(85, 109, 109);
+}
+
+#reset{
+  outline: none;
+  height: 100px;
+  width: 275px;
+  font-size: 35px;
+  border-radius: 10px;
+  border: 5px solid rgb(85, 109, 109);
+}
+
+.game-counter{
+  position: relative;
+  margin: 900px 855px;
+  font-size: 35px;
+  height: 250px;
+}
+
+.grid-item1{
+  height: 100%;
+  width: 100%;
+  background-color: green;
+  border-top-left-radius: 97%; 
+  border: 10px solid rgb(0, 116, 0); 
+}
+
+
+.grid-item2{
+  height: 100%;
+  width: 100%;
+  background-color: red;
+  border-top-right-radius: 97%;
+  border: 10px solid rgb(217, 0, 0);
+}
+
+.grid-item3{
+  height: 100%;
+  width: 100%;
+  background-color: yellow;
+  border-bottom-left-radius: 97%;
+  border: 10px solid rgb(239, 239, 0);
+}
+
+.grid-item4{
+  height: 100%;
+  width: 100%;
+  background-color: blue;
+  border-bottom-right-radius: 97%;
+  border: 10px solid rgb(40, 40, 221)
+}
+
+.flash-green{
+  background-color: lightgreen;
+}
+
+.flash-red{
+  background-color: lightcoral;
+}
+
+.flash-yellow{
+  background-color: lightgoldenrodyellow;
+}
+
+.flash-blue{
+  background-color: lightskyblue;
+}
 
