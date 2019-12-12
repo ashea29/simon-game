@@ -9,7 +9,7 @@ header{
   margin-bottom: 100px;
   text-align: center;
   background-color: rgb(63, 71, 71);
-  /* rgb(59, 135, 182) */
+  
 }
 
 h1{
@@ -68,6 +68,7 @@ h1{
   width: 175px;
   top: 35%;
   left: 21%;
+  z-index: 5;
 }
 
 
@@ -76,8 +77,11 @@ h1{
   height: 100px;
   width: 275px;
   font-size: 35px;
+  text-align: center;
+  padding-top: 19px;
   border-radius: 10px;
   border: 5px solid rgb(85, 109, 109);
+  cursor: pointer;
 }
 
 #reset{
@@ -85,16 +89,39 @@ h1{
   height: 100px;
   width: 275px;
   font-size: 35px;
+  text-align: center;
+  padding-top: 19px;
   border-radius: 10px;
+  border: 5px solid rgb(85, 109, 109);
+  cursor: pointer;
+}
+
+#counter{
+  position: relative;
+  margin: 800px 877px;
+  padding: 15px;
+  /* margin-bottom: 0px; */
+  font-size: 35px;
+  height: 90px;
+  width: 125px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 40px;
+  font-family: 'Lora', serif;
+  color: white;
+  background-color: rgb(63, 71, 71);
   border: 5px solid rgb(85, 109, 109);
 }
 
-.game-counter{
+.counter-label{
+  margin: 0 auto;
+}
+/* .counter-label{
   position: relative;
-  margin: 900px 855px;
+  margin: 100px 855px;
   font-size: 35px;
   height: 250px;
-}
+} */
 
 .grid-item1{
   height: 100%;
