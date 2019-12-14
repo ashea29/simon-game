@@ -29,14 +29,12 @@ let correctPattern
 turnCounter.innerHTML = "--"
 
 instructBtn.addEventListener('click', function(event){
-  // event.preventDefault()
   window.location.reload()
   instructBtn.style.backgroundColor = "black"
   instructBtn.style.color = "white"
 })
 
 resetBtn.addEventListener('click', function(event) {
-  // event.preventDefault()
   window.location.reload()
   resetBtn.style.backgroundColor = "black"
   resetBtn.style.color = "white"
@@ -65,28 +63,28 @@ function flashGreenBtn(){
   greenBtn.style.backgroundColor = "lightgreen"
   setTimeout(() => {
     greenBtn.style.backgroundColor = "green"
-  }, 200);
+  }, 1000);
 }
 
 function flashRedBtn(){
   redBtn.style.backgroundColor = "lightcoral"
   setTimeout(() => {
     redBtn.style.backgroundColor = "red"
-  }, 200);
+  }, 1000);
 }
 
 function flashYellowBtn(){
   yellowBtn.style.backgroundColor = "lightgoldenrodyellow"
   setTimeout(() => {
     yellowBtn.style.backgroundColor = "yellow"
-  }, 200);
+  }, 1000);
 }
 
 function flashBlueBtn(){
   blueBtn.style.backgroundColor = "lightskyblue"
   setTimeout(() => {
     blueBtn.style.backgroundColor = "blue"
-  }, 200);
+  }, 1000);
 }
 
 greenBtn.addEventListener('click', function(event) { 
@@ -151,9 +149,50 @@ startBtn.addEventListener('click', function(event){
     startBtn.style.backgroundColor = "rgb(63, 71, 71)"
     startBtn.style.color = "white"
   }, 200);
+  startGame()
 })
   
-  let currentTurn = turnCounter.innerHTML
-  console.log(currentTurn)
-
   
+
+
+function startGame () {
+  numberOfFlashes = 0
+  count = 0
+  turnCounter.innerHTML = 1
+  for (let i = 0; i < 5; i++) {
+    gamePattern.push(Math.ceil(Math.random()*4))
+    console.log(gamePattern)
+  }
+
+  timer()
+   
+  
+}
+
+// function machineTurn (){
+  
+// }
+
+
+
+let counter = 0
+let timer = () => {
+    let setCustomInterval = setInterval( () => {
+    counter += 1
+    if (gamePattern[counter] === 1){
+      flashGreenBtn()
+    } else if (gamePattern[counter] === 2){
+      flashRedBtn()
+    } else if (gamePattern[counter] === 3){
+      flashYellowBtn()
+    } else if (gamePattern[counter] === 4){
+      flashBlueBtn()
+    }
+    console.log(counter)
+    if(counter === 3) { 
+      console.log('inside if')
+      clearInterval(setCustomInterval)
+      }
+    console.log('yes')
+  }, 800)
+}
