@@ -1,0 +1,47 @@
+PSEUDOCODE:
+- DECLARE const variables to store all the game buttons, and for the counter box, using document.querySelector
+
+- DECLARE two arrays, one called gamePattern, to store the flashes the computer will make, and one called userPattern, to store the user's clicked pattern
+
+- DECLARE a boolean variable called machine, which will help to switch between the computer's turn and waiting for the user's clicks
+
+- DECLARE a boolean variable called gameIsOn which will be set to true when the user clicks the start button
+
+- DECLARE a boolean variable called winCondition which will be set to true when the conditions have been met to win the game
+
+- DECLARE a variable to store the setInterval value
+
+- DECLARE a variable called numberOfFlashes, to keep track of how many flashes the computer has made
+
+- DECLARE a variable called count, to keep track of the turn counts
+
+- DECLARE a boolean variable called correctPattern which will set to true in conditional to determine if the user's clicks match the computer's flashes
+
+- Using innerHTML, set the counter box's value to '--' (this will be kind of a default value before the user clicks the start button)
+
+- Add EVENT LISTENERS to the instructions button and the reset button
+
+- Create a function called flashButtons, which will set all color buttons to their 'flash' color, and will be called when the users wins the game
+
+- Create a function called resetButtons, which will return all color buttons back to their original color
+
+- Create a FUNCTION for each of the colored buttons which will toggle their color
+
+- Add an EVENT LISTENER to the startBtn which toggles its color (to signify it has been clicked), and will start the game when the user clicks on it, calling the playGame function
+
+- Define the playGame FUNCTION:
+     -it should set the winCondition variable to false, the numberOfFlashes variable to 0, the count variable to 1, the correctPattern varibale to true, and the counter box's innerHTML to 1;
+
+     - next it should do a for loop for the number of turns the game will have (maybe 5 to start), and on each iteration it should push a random sequence of color button flashes to the gamePattern array (an array of arrays) which will be used for each of the turns
+
+     - next it should set the machine variable to true
+
+     - next it should set the interval variable to setInterval of a function 'machineTurn' at 1000
+
+- Define the FUNCTION called machineTurn, so that it checks the appropriate array in the gamePattern array and executes the correct number of flashes calling the appropriate functions (flashGreenBtn, etc.)
+
+- Then the user clicks the button(s) based on the pattern the machine flashed, and these clicks (in addition to causing the button to toggle colors [i.e. "flash"]) should push an integer (between 1 and 4) to the userPattern array, so it can be checked against the gamePattern array
+
+- Define a function to check userPattern array against gamePattern array; if a match, somehow the count and number of flashes should increment and the next turn should start (machineTurn)
+
+- WIN CONDITION: If a user clicks the correct buttons during all five turns, they win
