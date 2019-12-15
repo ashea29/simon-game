@@ -1,0 +1,64 @@
+PSEUDOCODE:
+
+Define five functions (one for each round), called: roundOne, roundTwo, roundThree, roundFour, roundFive
+
+roundOne is called when the start button is pressed
+
+For each round, first clear the values in gamePattern and userPattern. Then, call a flashButtons function (current function with this name could be renamed flashAll), which will utilize the forEach method.
+
+    gameOn = false
+
+    gamePattern = []
+    userPattern = []
+
+    turnCounter.innerHTML = NUMBER (whichever round this is)
+
+    turnNumber = NUMBER (whichever round this is)
+
+    gamePattern.push(Math.floor(Math.random()*4)+1)
+
+    (IN ROUNDS TWO THROUGH FOUR:
+      for (i=1; i <= turnNumber; i++){
+        gamePattern.push(Math.floor(Math.random()*4)+1)
+      }
+    )
+
+    gamePattern.forEach(flashButtons)
+
+    function flashButtons(item, index){
+
+      let interval = setInterval( () => {
+      if (item == 1){
+        flashGreenBtn()
+      } else if (item == 2){
+        flashRedBtn()
+      } else if (item == 3){
+        flashYellowBtn
+      } else if (item == 4){
+        flashBlueBtn
+      }
+        clearInterval(interval)
+    }, 1000)
+    }
+
+    gameOn = true
+
+     if (userPattern === gamePattern){
+      alert or modal saying "Correct!"
+      (then call the function for whatever the next round is)
+    } else if (userPattern !== gamePattern){
+      alert or modal saying "Incorrect! Try again..."
+      (call the function for this round again)
+    }
+    
+    =================================
+
+    function checkForWin(){
+      if (turnNumber == 5 && userPattern === gamePattern){
+        alert or modal saying "YOU WIN!"
+        possibly have a button called "PLAY AGAIN" which calls the roundOne function
+      }
+    }
+
+
+
