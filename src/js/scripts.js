@@ -6,22 +6,22 @@ const startBtn = document.querySelector('#start')
 const resetBtn = document.querySelector('#reset')
 const instructBtn = document.querySelector('#instructions')
 
-const turnCounter = document.querySelector('#counter') 
+let turnCounter = document.querySelector('#counter') 
 
 let gamePattern = []
 let userPattern = []
 
 let machine
 
-let gameOn = true
+let gameOn = false
 
 let winCondition
 
-let numberOfFlashes
+// let numberOfFlashes
 
 let interval
 
-let count
+let counter
 
 let correctPattern
 
@@ -60,14 +60,14 @@ function flashButtons() {
 }
 
 function flashGreenBtn(){
-  greenBtn.style.backgroundColor = "lightgreen"
+    greenBtn.style.backgroundColor = "lightgreen"
   setTimeout(() => {
     greenBtn.style.backgroundColor = "green"
   }, 1000);
 }
 
 function flashRedBtn(){
-  redBtn.style.backgroundColor = "lightcoral"
+    redBtn.style.backgroundColor = "lightcoral"
   setTimeout(() => {
     redBtn.style.backgroundColor = "red"
   }, 1000);
@@ -88,11 +88,12 @@ function flashBlueBtn(){
 }
 
 greenBtn.addEventListener('click', function(event) { 
-  // if(gameOn){
+  if(gameOn){
     userPattern.push(1)
-    // checkIfMatches()
+    console.log(userPattern)
     flashGreenBtn()
-  //} 
+    // checkForMatch()
+  } 
   if(!winCondition){
     setTimeout(() => {
       resetColors()
@@ -101,11 +102,12 @@ greenBtn.addEventListener('click', function(event) {
 })
 
 redBtn.addEventListener('click', function(event) { 
-  // if(gameOn){
+  if(gameOn){
     userPattern.push(2)
-    // checkIfMatches()
+    console.log(userPattern)
     flashRedBtn()
-  
+    // checkIfMatches()
+  }
   if(!winCondition){
     setTimeout(() => {
       resetColors()
@@ -115,11 +117,12 @@ redBtn.addEventListener('click', function(event) {
 })
 
 yellowBtn.addEventListener('click', function(event) {
-  // if(gameOn){
+  if(gameOn == true){
     userPattern.push(3)
-    // checkIfMatches()
+    console.log(userPattern)
     flashYellowBtn()
-  
+    // checkForMatch()
+  }
   if(!winCondition){
     setTimeout(() => {
       resetColors()
@@ -128,11 +131,12 @@ yellowBtn.addEventListener('click', function(event) {
 })
 
 blueBtn.addEventListener('click', function(event) {
-  // if(gameOn){
+  if(gameOn == true){
     userPattern.push(4)
-    // checkIfMatches()
+    console.log(userPattern)
     flashBlueBtn()
-  // }
+    // checkForMatch()
+  }
   if(!winCondition){
     setTimeout(() => {
       resetColors()
@@ -148,7 +152,8 @@ startBtn.addEventListener('click', function(event){
   setTimeout(() => {
     startBtn.style.backgroundColor = "rgb(63, 71, 71)"
     startBtn.style.color = "white"
-  }, 200);
+  }, 300);
+  
   startGame()
 })
   
@@ -156,17 +161,10 @@ startBtn.addEventListener('click', function(event){
 
 
 function startGame () {
-  numberOfFlashes = 0
-  count = 0
+  counter = 0
   turnCounter.innerHTML = 1
-  for (let i = 0; i < 5; i++) {
-    gamePattern.push(Math.ceil(Math.random()*4))
-    console.log(gamePattern)
-  }
-
-  timer()
-   
   
+  timer()
 }
 
 // function machineTurn (){
@@ -175,24 +173,79 @@ function startGame () {
 
 
 
-let counter = 0
+// let counter = 0
 let timer = () => {
-    let setCustomInterval = setInterval( () => {
-    counter += 1
-    if (gamePattern[counter] === 1){
-      flashGreenBtn()
-    } else if (gamePattern[counter] === 2){
-      flashRedBtn()
-    } else if (gamePattern[counter] === 3){
-      flashYellowBtn()
-    } else if (gamePattern[counter] === 4){
-      flashBlueBtn()
-    }
-    console.log(counter)
-    if(counter === 3) { 
-      console.log('inside if')
-      clearInterval(setCustomInterval)
+  // if (gameOn == false){
+    // counter = 1
+    
+    for (let i = 0; i <= counter; i++) {
+      gamePattern.push(Math.ceil(Math.random()*4))
+      console.log('this is gamePattern: ', gamePattern)
+      counter+=1
+      let interval = setInterval( () => {
+        
+        console.log('this is counter', counter)
+        // turnCounter.innerHTML+=counter
+        if (gamePattern[counter] === 1){
+          flashGreenBtn()
+        } else if (gamePattern[counter] === 2){
+          flashRedBtn()
+        } else if (gamePattern[counter] === 3){
+          flashYellowBtn()
+        } else if (gamePattern[counter] === 4){
+          flashBlueBtn()
+        }
+          clearInterval(interval)
+        console.log('yes')
+      }, 1000)
       }
-    console.log('yes')
-  }, 800)
+      gameOn = true
 }
+
+// let checkForMatch = (logGamePattern) => {
+  
+//   if (userPattern == gamePattern){
+//     turnCounter.innerHTML++
+//     // for (let i = 0; i < 5; i++) {
+//     userPattern = []
+//     gamePattern = []
+//     logGamePattern()*(counter+1)
+//       // gamePattern.push(Math.ceil(Math.random()*(counter+1)))
+//       console.log(gamePattern)
+//     // }
+//     gameOn = false
+    
+//     timer()
+    
+//   } else if (userPattern != gamePattern){
+//     gameOn = false
+//     // alert("That's incorrect!")
+//     userPattern = []
+//     gamePattern = []
+//     // for (let i = 0; i < 5; i++) {
+//       gameArr*counter
+//       console.log(gamePattern)
+//     // }
+//     let interval = setInterval( () =>{
+//       if (gamePattern[counter] === 1){
+//         flashGreenBtn()
+//       } else if (gamePattern[counter] === 2){
+//         flashRedBtn()
+//       } else if (gamePattern[counter] === 3){
+//         flashYellowBtn()
+//       } else if (gamePattern[counter] === 4){
+//         flashBlueBtn()
+//       }
+//         clearInterval(interval)
+//       console.log('yes')
+//       gameOn == true
+//     }, 800)
+//     checkForMatch()
+//   }
+
+//   if (counter == 5 && userPattern.length == counter && userPattern == gamePattern){
+//     winCondition = true
+//     alert('You win!')
+
+//   }
+// }
