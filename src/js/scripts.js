@@ -11,9 +11,9 @@ let turnCounter = document.querySelector('#counter')
 let gamePattern = []
 let userPattern = []
 
-let machine
+// let machine
 
-let gameOn = false
+let gameOn
 
 let winCondition
 
@@ -21,9 +21,11 @@ let winCondition
 
 let interval
 
-let counter
+let turnNumber
 
-let correctPattern
+let checkForMatch
+
+// let correctPattern //possibly make this a function
 
 
 turnCounter.innerHTML = "--"
@@ -40,7 +42,7 @@ resetBtn.addEventListener('click', function(event) {
   resetBtn.style.color = "white"
   setTimeout(() => {
     resetBtn.style.backgroundColor = "white"
-    resetBtn.style.backgroundColor = "black"
+    resetBtn.style.color = "black"
   }, 200);
 })
 
@@ -52,7 +54,7 @@ function resetColors() {
   blueBtn.style.backgroundColor = "blue"
 }
 
-function flashButtons() {
+function flashAll() {
   greenBtn.style.backgroundColor = "lightgreen"
   redBtn.style.backgroundColor = "lightcoral"
   yellowBtn.style.backgroundColor = "lightgoldenrodyellow"
@@ -87,6 +89,31 @@ function flashBlueBtn(){
   }, 1000);
 }
 
+// function flashButtons(arrItem, arrIndex){
+
+  
+// }
+
+// function correctPattern (){
+//   if (userPattern.length == turnNumber && gamePatter.length == turnNumber && userPattern === gamePattern){
+//     alert("Correct!")
+//     // (then call the function for whatever the next round is)
+//   }
+//   if (userPattern.length == turnNumber && gamePatter.length == turnNumber && userPattern !== gamePattern){
+//     alert("Incorrect! Try again...")
+//     // (call the function for this round again)
+//   }
+// }
+
+// function checkForWin(){
+//   if (turnNumber == 5 && userPattern === gamePattern){
+//     flashAll()
+//     alert("YOU WIN!")
+//     // possibly have a button called "PLAY AGAIN" which calls the roundOne function
+//   }
+// }
+
+function userClicks(){
 greenBtn.addEventListener('click', function(event) { 
   if(gameOn){
     userPattern.push(1)
@@ -94,11 +121,11 @@ greenBtn.addEventListener('click', function(event) {
     flashGreenBtn()
     // checkForMatch()
   } 
-  if(!winCondition){
-    setTimeout(() => {
-      resetColors()
-    }, 200);
-  }
+  // if(!winCondition){
+  //   setTimeout(() => {
+  //     resetColors()
+  //   }, 200);
+  // }
 })
 
 redBtn.addEventListener('click', function(event) { 
@@ -108,11 +135,11 @@ redBtn.addEventListener('click', function(event) {
     flashRedBtn()
     // checkIfMatches()
   }
-  if(!winCondition){
-    setTimeout(() => {
-      resetColors()
-    }, 200);
-  }
+  // if(!winCondition){
+  //   setTimeout(() => {
+  //     resetColors()
+  //   }, 200);
+  // }
 
 })
 
@@ -123,11 +150,11 @@ yellowBtn.addEventListener('click', function(event) {
     flashYellowBtn()
     // checkForMatch()
   }
-  if(!winCondition){
-    setTimeout(() => {
-      resetColors()
-    }, 200);
-  }
+  // if(!winCondition){
+  //   setTimeout(() => {
+  //     resetColors()
+  //   }, 200);
+  // }
 })
 
 blueBtn.addEventListener('click', function(event) {
@@ -137,13 +164,13 @@ blueBtn.addEventListener('click', function(event) {
     flashBlueBtn()
     // checkForMatch()
   }
-  if(!winCondition){
-    setTimeout(() => {
-      resetColors()
-    }, 200);
-  }
+  // if(!winCondition){
+  //   setTimeout(() => {
+  //     resetColors()
+  //   }, 200);
+  // }
 })
-
+}
 
 startBtn.addEventListener('click', function(event){
   console.log('startBtn')
@@ -154,18 +181,275 @@ startBtn.addEventListener('click', function(event){
     startBtn.style.color = "white"
   }, 300);
   
-  startGame()
+  roundOne()
 })
   
+function roundOne(){
+    gamePattern = []
+    userPattern = []
+
+    turnCounter.innerHTML = 1
+
+    turnNumber = 1
+
+    gamePattern.push(Math.floor(Math.random()*4)+1)
+    console.log(gamePattern)
+
+    // (IN ROUNDS TWO THROUGH FOUR:
+    //   for (i=1; i <= turnNumber; i++){
+    //     gamePattern.push(Math.floor(Math.random()*4)+1)
+    //   }
+    // )
+
+    gamePattern.forEach(flashRoundOne)
+
+    function flashRoundOne (item){
+      interval = setInterval( () => {
+        if (item == 1){
+          flashGreenBtn()
+        }
+        if (item == 2){
+          flashRedBtn()
+        }
+        if (item == 3){
+          flashYellowBtn()
+        }
+        if (item == 4){
+          flashBlueBtn()
+        }
+          clearInterval(interval)
+      }, 1000)
+      
+        gameOn = true
+    }
+    
+    userClicks()
+    
+    checkForMatch = () => {
+      if (userPattern == gamePattern){
+        alert("Correct!")
+        roundTwo()
+        }
+    }
+    checkForMatch()
+    
+  } 
+
+function roundTwo(){
+  gameOn = false
+
+  gamePattern = []
+  userPattern = []
+
+  turnCounter.innerHTML = 2
+
+  turnNumber = 2
+
+  // gamePattern.push(Math.floor(Math.random()*4)+1)
+
+  // (IN ROUNDS TWO THROUGH FOUR:
+    for (i=1; i <= turnNumber; i++){
+      gamePattern.push(Math.floor(Math.random()*4)+1)
+    }
+  // )
+
+  gamePattern.forEach(flashRoundTwo)
+
+  function flashRoundTwo (item){
+    interval = setInterval( () => {
+      if (item == 1){
+        flashGreenBtn()
+      } else if (item == 2){
+        flashRedBtn()
+      } else if (item == 3){
+        flashYellowBtn()
+      } else if (item == 4){
+        flashBlueBtn()
+      }
+        clearInterval(interval)
+    }, 1000)
+    
+      gameOn = true
+  }
+
+  // roundTwoInterval = setInterval(function(){
+  //   if (userPattern.length === 2 && gamePattern.length === 2 && userPattern === gamePattern){
+  //     alert("Correct!")
+  //     clearInterval(roundInterval)
+  //     checkForWin()
+  //   }
+  //   if (userPattern.length === 2 && gamePattern.length === 2 && userPattern !== gamePattern){
+  //     alert("Incorrect! Try again...")
+  //     clearInterval(roundInterval)
+  //     roundFive()
+  //   }
+  // }, 300)
+}  
+
+function roundThree(){
+  gameOn = false
+
+  gamePattern = []
+  userPattern = []
+
+  turnCounter.innerHTML = 3
+
+  turnNumber = 3
+
+  // gamePattern.push(Math.floor(Math.random()*4)+1)
+
+  // (IN ROUNDS TWO THROUGH FOUR:
+    for (i=1; i <= turnNumber; i++){
+      gamePattern.push(Math.floor(Math.random()*4)+1)
+    }
+  // )
+
+  gamePattern.forEach(flashRoundThree)
+
+  function flashRoundThree (item){
+    interval = setInterval( () => {
+      if (item == 1){
+        flashGreenBtn()
+      } else if (item == 2){
+        flashRedBtn()
+      } else if (item == 3){
+        flashYellowBtn()
+      } else if (item == 4){
+        flashBlueBtn()
+      }
+        clearInterval(interval)
+    }, 1000)
+    
+      gameOn = true
+  }
+
+  roundThreeInterval = setInterval(function(){
+    if (userPattern.length === 3 && gamePattern.length === 3 && userPattern === gamePattern){
+      alert("Correct!")
+      clearInterval(roundInterval)
+      roundFour()
+    }
+    if (userPattern.length === 3 && gamePattern.length === 3 && userPattern !== gamePattern){
+      alert("Incorrect! Try again...")
+      clearInterval(roundInterval)
+      roundThree()
+    }
+  }, 300)
+}  
+
+function roundFour(){
+  gameOn = false
+
+  gamePattern = []
+  userPattern = []
+
+  turnCounter.innerHTML = 4
+
+  turnNumber = 4
+
+  // gamePattern.push(Math.floor(Math.random()*4)+1)
+
+  // (IN ROUNDS TWO THROUGH FOUR:
+    for (i=1; i <= turnNumber; i++){
+      gamePattern.push(Math.floor(Math.random()*4)+1)
+    }
+  // )
+
+  gamePattern.forEach(flashRoundFour)
+
+  function flashRoundFour (item){
+    interval = setInterval( () => {
+      if (item == 1){
+        flashGreenBtn()
+      } else if (item == 2){
+        flashRedBtn()
+      } else if (item == 3){
+        flashYellowBtn
+      } else if (item == 4){
+        flashBlueBtn
+      }
+        clearInterval(interval)
+    }, 1000)
+    
+      gameOn = true
+  }
+
+  roundFourInterval = setInterval(function(){
+    if (userPattern.length === 4 && gamePattern.length === 4 && userPattern === gamePattern){
+      alert("Correct!")
+      clearInterval(roundInterval)
+      roundFive()
+    }
+    if (userPattern.length === 4 && gamePattern.length === 4 && userPattern !== gamePattern){
+      alert("Incorrect! Try again...")
+      clearInterval(roundInterval)
+      roundFour()
+    }
+  }, 300)
+ 
+}  
+
+function roundFive(){
+  gameOn = false
+
+  gamePattern = []
+  userPattern = []
+
+  turnCounter.innerHTML = 5
+
+  turnNumber = 5
+
+  // gamePattern.push(Math.floor(Math.random()*4)+1)
+
+  // (IN ROUNDS TWO THROUGH FOUR:
+    for (i=1; i <= turnNumber; i++){
+      gamePattern.push(Math.floor(Math.random()*4)+1)
+    }
+  // )
+
+  gamePattern.forEach(flashRoundFive)
+
+  function flashRoundFive (item){
+    interval = setInterval( () => {
+      if (item == 1){
+        flashGreenBtn()
+      } else if (item == 2){
+        flashRedBtn()
+      } else if (item == 3){
+        flashYellowBtn
+      } else if (item == 4){
+        flashBlueBtn
+      }
+        clearInterval(interval)
+    }, 1000)
+    
+      gameOn = true
+  }
+
+  gameOn = true
+
+  let roundFiveInterval = setInterval(function(){
+    if (userPattern.length === 5 && gamePattern.length === 5 && userPattern === gamePattern){
+      alert("Correct!")
+      clearInterval(roundInterval)
+      checkForWin()
+    }
+    if (userPattern.length === 5 && gamePattern.length === 5 && userPattern !== gamePattern){
+      alert("Incorrect! Try again...")
+      clearInterval(roundInterval)
+      roundFive()
+    }
+  }, 300)
   
 
+}  
 
-function startGame () {
-  counter = 0
-  turnCounter.innerHTML = 1
+// function startGame () {
+//   counter = 0
+//   turnCounter.innerHTML = 1
   
-  timer()
-}
+//   timer()
+// }
 
 // function machineTurn (){
   
@@ -174,33 +458,33 @@ function startGame () {
 
 
 // let counter = 0
-let timer = () => {
-  // if (gameOn == false){
-    // counter = 1
+// let timer = () => {
+//   // if (gameOn == false){
+//     // counter = 1
     
-    for (let i = 0; i <= counter; i++) {
-      gamePattern.push(Math.ceil(Math.random()*4))
-      console.log('this is gamePattern: ', gamePattern)
-      counter+=1
-      let interval = setInterval( () => {
+//     for (let i = 0; i <= counter; i++) {
+//       gamePattern.push(Math.ceil(Math.random()*4))
+//       console.log('this is gamePattern: ', gamePattern)
+//       counter+=1
+//       let interval = setInterval( () => {
         
-        console.log('this is counter', counter)
-        // turnCounter.innerHTML+=counter
-        if (gamePattern[counter] === 1){
-          flashGreenBtn()
-        } else if (gamePattern[counter] === 2){
-          flashRedBtn()
-        } else if (gamePattern[counter] === 3){
-          flashYellowBtn()
-        } else if (gamePattern[counter] === 4){
-          flashBlueBtn()
-        }
-          clearInterval(interval)
-        console.log('yes')
-      }, 1000)
-      }
-      gameOn = true
-}
+//         console.log('this is counter', counter)
+//         // turnCounter.innerHTML+=counter
+//         if (gamePattern[counter] === 1){
+//           flashGreenBtn()
+//         } else if (gamePattern[counter] === 2){
+//           flashRedBtn()
+//         } else if (gamePattern[counter] === 3){
+//           flashYellowBtn()
+//         } else if (gamePattern[counter] === 4){
+//           flashBlueBtn()
+//         }
+//           clearInterval(interval)
+//         console.log('yes')
+//       }, 1000)
+//       }
+//       gameOn = true
+// }
 
 // let checkForMatch = (logGamePattern) => {
   
