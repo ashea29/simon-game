@@ -27,7 +27,7 @@ For each round, first clear the values in gamePattern and userPattern. Then, cal
 
     function flashButtons(item, index){
 
-      let interval = setInterval( () => {
+      interval = setInterval( () => {
       if (item == 1){
         flashGreenBtn()
       } else if (item == 2){
@@ -55,6 +55,7 @@ For each round, first clear the values in gamePattern and userPattern. Then, cal
 
     function checkForWin(){
       if (turnNumber == 5 && userPattern === gamePattern){
+        flashAll()
         alert or modal saying "YOU WIN!"
         possibly have a button called "PLAY AGAIN" which calls the roundOne function
       }
